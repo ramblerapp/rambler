@@ -3,20 +3,20 @@ chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
   
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     var activeTab = tabs[0];
-    chrome.tabs.sendMessage(activeTab.id, { "message": activeTab }, function(response) { return true; });
+    chrome.tabs.sendMessage(activeTab.id, { "tabUpdated": activeTab }, function(response) { return true; });
   });
 
   if (info.status === 'complete') {
-    if ( tab.url.indexOf("kick.com") > -1) {
-        chrome.storage.sync.set({"kick_site": tab.id}, function() {
+    if ( tab.url.indexOf("rumble.com") > -1) {
+        chrome.storage.sync.set({"rumble_site": tab.id}, function() {
       });
     }
 
     setTimeout(function() {
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         var activeTab = tabs[0];
-        chrome.tabs.sendMessage(activeTab.id, {"message": "kickstarrchatloaded"}, function(response) { return true; });
-        chrome.runtime.setUninstallURL('https://kickstarrapp.github.io/uninstall');
+        chrome.tabs.sendMessage(activeTab.id, {"chatloaded": "ramblerchatloaded"}, function(response) { return true; });
+        chrome.runtime.setUninstallURL('https://ramblerapp.github.io/uninstall');
       });
     }, 1000);
   }
@@ -26,8 +26,8 @@ chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
 chrome.action.onClicked.addListener((tab) => {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     var activeTab = tabs[0];
-    chrome.tabs.sendMessage(activeTab.id, { "message": "clicked" }, function(response) { return true; });
-    chrome.tabs.sendMessage(activeTab.id, { "message": activeTab }, function(response) { return true; });
+    chrome.tabs.sendMessage(activeTab.id, { "clickedmessage": "clicked" }, function(response) { return true; });
+    chrome.tabs.sendMessage(activeTab.id, { "clickedTab": activeTab }, function(response) { return true; });
   });
 
   chrome.scripting.executeScript({
