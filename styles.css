@@ -6,7 +6,7 @@
      top: 0px;
      height: 50px;
      width: 50px;
-     background: rgb(83, 252, 24);
+     background: #85C742;
      font-size: xx-large;
      color: silver;
      line-height: 0.5rem;
@@ -45,9 +45,35 @@
 .scbtOptionsSavedWrapper .round-button:hover, 
 .scbtOptionsSavedWrapper .round-button:focus, 
 .scbtOptionsSavedWrapper .round-button:active, 
-.scbtOptionsSavedWrapper .round-button.focused
+.scbtOptionsSavedWrapper .round-button.focused, 
+
+.az2:hover, 
+.az2:focus, 
+.az2:active,
+.az2.focused, 
+
+.az3:hover, 
+.az3:focus, 
+.az3:active,
+.az3.focused, 
+
+.az4:hover, 
+.az4:focus, 
+.az4:active,
+.az4.focused, 
+
+.az5:hover, 
+.az5:focus, 
+.az5:active,
+.az5.focused, 
+
+.az6:hover, 
+.az6:focus, 
+.az6:active,
+.az6.focused
 {
-     background: lawngreen !important;
+     background: #85C742 !important;
+     border: 1px solid #fff;
 }
 
 .scbt-options-wrapper, 
@@ -63,7 +89,8 @@
 .scbt-mobile .scbt7,
 .scbt-mobile .scbt10,
 .scbt-mobile .scbt16,
-.scbt-mobile .scbt17 
+.scbt-mobile .scbt17, 
+#scbtLoading
 {
     display: none;
 }
@@ -96,7 +123,7 @@
 .scbtCloseButton,
 .scbtChatMenu button,
 .scbtOptionsMenu button,
-.scbt-kick .scbt-speed li,
+.scbt-kick .scbt-speed li
 {
     cursor: pointer;
 }
@@ -298,7 +325,7 @@
 
 .scbtOptionsMenuForm > div {
     max-height: 100px;
-    overflow: scroll;    
+    overflow-y: scroll;
 }
 
 .scbtOptionsMenuForm > div::-webkit-scrollbar {
@@ -311,10 +338,92 @@
 }
  
 .scbtOptionsMenuForm > div::-webkit-scrollbar-thumb {
-  background: lawngreen; 
+  background: #85C742; 
   border-radius: 10px;
 }
 
 .scbtOptionsMenuForm > div::-webkit-scrollbar-thumb:hover {
   background: darkgreen; 
+}
+
+ 
+
+
+
+.scbt-rumble.scbt-mobile .scbtSideMenu, .scbt-rumble.scbt-mobile .scbtChatToggleMenu {
+    top: 0px;
+    right: unset;
+    left: 0px;
+}
+
+.scbtChatToggleMenu {
+     top: 355px;
+}
+
+
+.scbtOptionsThemeTitle, 
+.scbtOptionsHighlightTitle, 
+.scbtOptionsMuteTitle, 
+.scbtOptionsHideTitle, 
+.scbtOptionsFeaturesTitle, 
+.scbtOptionsSavedTitle, 
+.scbtOptionsImportTitle {
+    overflow: auto;
+}
+
+.scbt-rumble .scbtChatPreviousContent {
+    text-align: left;
+    display: block;
+}
+
+.scbt-rumble.scbt-mobile .scbtChatToggleMenu {
+    top: 42px;
+}
+
+.scbt-rumble .scbtOptionsMenu {
+    position: relative;
+    z-index: 11111;
+    background: #061726;
+}
+
+
+.scbt-rumble #scbthighlighted8Wrapper, .scbt-rumble #scbthighlighted9Wrapper, .scbt-rumble #scbthighlighted11Wrapper {
+    visibility: hidden;
+}
+
+
+#scbtMentionMenu {
+     display: none;
+     position: absolute;
+     z-index: 100;
+     bottom: 70px;
+     right: 5px;
+}
+ #scbtMentionMenu.scbt-bl {
+     display: block;
+     background: #777;
+     padding: 0.5rem;
+}
+ #scbtMentionMenu li {
+     list-style-type: none;
+}
+ #scbtMentionMenu li:active, #scbtMentionMenu li:hover, #scbtMentionMenu li:focus {
+     color: #85C742;
+}
+ #scbtMentionMenu ul {
+     padding-left: 0px;
+     padding-right: 75px;
+     width: 100%;
+}
+ #scbtMentionMenu .emoji-picker {
+     width: fit-content;
+}
+ #scbtMentionMenu .emoji-picker__content {
+     overflow-y: scroll;
+}
+ .emoji-picker__wrapper-shown {
+     display: block !important;
+     position: absolute;
+     transform: translate(1089px, 15px, 0px);
+     inset: auto auto 0px 0px;
 }

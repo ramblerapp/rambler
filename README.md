@@ -1,10 +1,10 @@
 <!-- /* Copyright 2023 biolithic. All rights reserved. */ -->
-## KickStarr browser extension for computers and mobile devices 1.0.0
+## Rambler browser extension for computers and mobile devices 1.0.0
 
 
 ## Welcome!
 
-Thank you for downloading and trying this!  Written by a single person in the USA, we hope this helps you keep up with chat in small to large live streams. If you have any questions, comment, bugs or ideas on how to make this better, please visit https://beacons.ai/kickstarrtv and send them there. Thanks!
+Thank you for downloading and trying this!  Written by a single person in the USA, we hope this helps you keep up with chat in small to large live streams. If you have any questions, comment, bugs or ideas on how to make this better, please visit https://beacons.ai/Ramblertv and send them there. Thanks!
 
 
 ## Basic Overview
@@ -23,7 +23,7 @@ This free extension is an add-on or plugin or extension to mobile Android device
 
 
 ## Which websites does it work on now?
-Live streams on Kick.com
+Live streams on Rumble.com
 
 
 ## 🔧 Install it!
@@ -55,7 +55,7 @@ This extension saves information to your browser locally if you choose such as o
 
 ## How to get help with using this or questions or issues
 
-You may email us at: kickstarrtv@proton.me .
+You may email us at: ramblertv@mail.com .
 This help document might help you: https://github.com/ImprovedTube/YouTube-Extension/discussions/753
 This help document might help you: https://github.com/ParticleCore/Particle/wiki/Report-a-problem
 This help document might help you: https://github.com/night/betterttv/issues
@@ -82,7 +82,7 @@ This is currently funded/hosted 100% by the creator/developer, who is a person n
 
 ## How to help
 
-- If you have ideas and would like to help in programming, UI design or funding, you may email us at: kickstarrtv@proton.me .  Thanks!
+- If you have ideas and would like to help in programming, UI design or funding, you may email us at: ramblertv@mail.com .  Thanks!
 
 
 ## Source
@@ -107,7 +107,7 @@ This is currently funded/hosted 100% by the creator/developer, who is a person n
 
 ## Version B
 
-- This is released in 2023 and version 1.0 is an early access version for mass testing, quality assurance and bug fixing. This extension will be updated in 2023 most likely on Sundays as issues and features are raised by the community and fixed. The latest version will appear on https://Kickstarrapp.github.io .
+- This is released in 2023 and version 1.0 is an early access version for mass testing, quality assurance and bug fixing. This extension will be updated in 2023 most likely on Sundays as issues and features are raised by the community and fixed. The latest version will appear on https://RamblerApp.github.io .
 
 
 ## License
