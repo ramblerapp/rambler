@@ -173,7 +173,8 @@
 
 }
 
-.scbtSideMenu, .scbtChatToggleMenu {
+.scbtSideMenu,
+.scbtChatToggleMenu {
     position: fixed;
     top: 305px;
     z-index: 10000000;
@@ -185,7 +186,8 @@
      top: 355px;
 }
 
-.scbtSideMenu button, .scbtChatToggleMenu button {
+.scbtSideMenu button,
+.scbtChatToggleMenu button {
     display: inline-block;
     width: 40px;
     height: 45px;
@@ -212,7 +214,8 @@
      opacity: 1;
 }
  
-.scbtCloseButton:before, .scbtCloseButton:after {
+.scbtCloseButton:before,
+.scbtCloseButton:after {
      position: absolute;
      left: 15px;
      content: ' ';
@@ -298,7 +301,8 @@
      top: 45px;
 }
 
-.scbt-desktop .scbtSideMenu button, .scbt-desktop .scbtChatToggleMenu button {
+.scbt-desktop .scbtSideMenu button, 
+.scbt-desktop .scbtChatToggleMenu button {
      font-size: 1.25rem;
      width: fit-content;
 }
@@ -326,6 +330,7 @@
 .scbtOptionsMenuForm > div {
     max-height: 100px;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .scbtOptionsMenuForm > div::-webkit-scrollbar {
@@ -350,7 +355,8 @@
 
 
 
-.scbt-rumble.scbt-mobile .scbtSideMenu, .scbt-rumble.scbt-mobile .scbtChatToggleMenu {
+.scbt-rumble.scbt-mobile .scbtSideMenu,
+.scbt-rumble.scbt-mobile .scbtChatToggleMenu {
     top: 0px;
     right: unset;
     left: 0px;
@@ -387,7 +393,9 @@
 }
 
 
-.scbt-rumble #scbthighlighted8Wrapper, .scbt-rumble #scbthighlighted9Wrapper, .scbt-rumble #scbthighlighted11Wrapper {
+.scbt-rumble #scbthighlighted8Wrapper,
+.scbt-rumble #scbthighlighted9Wrapper,
+.scbt-rumble #scbthighlighted11Wrapper {
     visibility: hidden;
 }
 
@@ -399,31 +407,73 @@
      bottom: 70px;
      right: 5px;
 }
- #scbtMentionMenu.scbt-bl {
+
+#scbtMentionMenu.scbt-bl {
      display: block;
      background: #777;
      padding: 0.5rem;
 }
- #scbtMentionMenu li {
+
+#scbtMentionMenu li {
      list-style-type: none;
 }
- #scbtMentionMenu li:active, #scbtMentionMenu li:hover, #scbtMentionMenu li:focus {
+
+#scbtMentionMenu li:active,
+#scbtMentionMenu li:hover,
+#scbtMentionMenu li:focus {
      color: #85C742;
 }
- #scbtMentionMenu ul {
+
+#scbtMentionMenu ul {
      padding-left: 0px;
      padding-right: 75px;
      width: 100%;
 }
- #scbtMentionMenu .emoji-picker {
+
+#scbtMentionMenu .emoji-picker {
      width: fit-content;
 }
- #scbtMentionMenu .emoji-picker__content {
+
+#scbtMentionMenu .emoji-picker__content {
      overflow-y: scroll;
 }
- .emoji-picker__wrapper-shown {
+
+.emoji-picker__wrapper-shown {
      display: block !important;
      position: absolute;
      transform: translate(1089px, 15px, 0px);
      inset: auto auto 0px 0px;
 }
+
+.scbt-rumble.scbt-mobile .scbtSideMenu, 
+.scbt-rumble.scbt-mobile .scbtChatToggleMenu {
+    width: -webkit-fill-available;
+}
+
+.scbt-rumble.scbt-mobile .scbtSideMenu button, 
+.scbt-rumble.scbt-mobile .scbtChatToggleMenu button {
+    width: 10%;
+}
+
+.scbt-rumble.scbt-mobile .scbtToggleButton2,
+.scbt-rumble.scbt-mobile .scbtChatTitle,
+.scbt-rumble.scbt-mobile .scbtChatMenu,
+.scbt-rumble.scbt-mobile .scbtChatWrapper {
+    position: fixed;
+}
+
+.scbt-rumble.scbt-mobile .scbtChatTitle {
+    top: 68px;
+    display: block;
+}
+
+.scbt-rumble.scbt-mobile .scbtChatMenu {
+    top: 120px;
+}
+
+.scbt-rumble.scbt-mobile .scbtChatWrapper {
+    top: 170px;
+    width: 100%;
+    border: 1px black solid;
+}
+

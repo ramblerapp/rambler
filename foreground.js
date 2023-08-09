@@ -648,7 +648,7 @@ function scbt_helper_save_options() {
     });
   }
 
-   x = document.body.getElementsByClassName('scbtfeature5'); // turn on auto-showing of chat on screen
+  x = document.body.getElementsByClassName('scbtfeature5'); // turn on auto-showing of chat on screen
   if (x[0]) {
     x[0].addEventListener('change', e => {
       if (e.target.checked) {
@@ -1665,7 +1665,7 @@ function scbt_user_chat_delete_by_videoid(e) {
   if (e.srcElement) { } else { return false; }
   if (e.srcElement.dataset) { } else { return false; }
   if (e.srcElement.dataset.dbname) { } else { return false; }
-  if (e) { e.preventDefault(); }
+  if (e) { if (e.preventDefault) { e.preventDefault(); } }
   
   window.scbtSearchingMessageIdsArr = [];
   setTimeout(function(){
@@ -1692,7 +1692,7 @@ function scbt_user_chat_mark_by_videoid(e) {
   if (e.srcElement) { } else { return false; }
   if (e.srcElement.dataset) { } else { return false; }
   if (e.srcElement.dataset.dbname) { } else { return false; }
-  if (e) { e.preventDefault(); }
+  if (e) { if (e.preventDefault) { e.preventDefault(); } }
 
   if ( window.location.href.indexOf('.html') > -1) {
     var str = localStorage.getItem(window.location.href);
@@ -1712,7 +1712,7 @@ function scbt_user_chat_export_by_videoid(e) {
   if (e.srcElement) { } else { return false; }
   if (e.srcElement.dataset) { } else { return false; }
   if (e.srcElement.dataset.dbname) { } else { return false; }
-  if (e) { e.preventDefault(); }
+  if (e) { if (e.preventDefault) { e.preventDefault(); } }
   
   window.scbtSearchingMessageIdsArr = [];
   var request = indexedDB.open(e.srcElement.dataset.dbname, 10);
@@ -2034,9 +2034,7 @@ return false;
 
 function scbt_user_search_saved_chat(e) {
   window.scbtSearchingMessageIdsArr = [];
-  if (e) {
-    if ( e.preventDefault ) { e.preventDefault(); }
-  }
+  if (e) { if ( e.preventDefault ) { e.preventDefault(); } }
   if (window.scbtDbNameToSearch) { } else { setTimeout(function(){ scbt_helper_toast('Error: no active or loaded chat to search.'); }, 500); return false; }
 
   var str = scbt_get_str_for_search();
@@ -2670,6 +2668,7 @@ async function scbt_user_search_for_saved_chat() {
     return false;
   }
   
+  scbt_helper_toast( 'Status: No VOD chat found for this video.');
   // put a not found message here
   return false;
 }
@@ -3921,13 +3920,18 @@ function scbt_helper_chat_make_decisions(obj, elem) {
 // ********************* set click handlers functions
 
 function scbt_add_listener_for_at_mention_menu() {
-  console.log('doing scbt_add_listener_for_at_mention_menu');
   setTimeout(function() {
-    window.scbtCloseMentionButtonRef.addEventListener('click', scbt_user_chat_close_mention_menu);
-    window.scbtChatInputRef.addEventListener('input', scbt_handler_for_chat_mention_menu);
-    window.scbtChatSearchInputTextRef.addEventListener('input', scbt_handler_for_chat_mention_menu);
+    if (window.scbtCloseMentionButtonRef && window.scbtCloseMentionButtonRef.id != 'scbtX') {
+      window.scbtCloseMentionButtonRef.addEventListener('click', scbt_user_chat_close_mention_menu);  
+    }
+    if (window.scbtChatInputRef && window.scbtChatInputRef.id != 'scbtX') {
+      window.scbtChatInputRef.addEventListener('input', scbt_handler_for_chat_mention_menu);
+    }
+    if (window.scbtChatSearchInputTextRef && window.scbtChatSearchInputTextRef.id != 'scbtX') {
+      window.scbtChatSearchInputTextRef.addEventListener('input', scbt_handler_for_chat_mention_menu);
+    }
+    return false;
   }, 2000);
-  return false;
 }
 
 
@@ -3936,8 +3940,8 @@ function scbt_remove_listener_for_at_mention_menu() {
     window.scbtCloseMentionButtonRef.removeEventListener('click', scbt_user_chat_close_mention_menu);
     window.scbtChatInputRef.removeEventListener('input', scbt_handler_for_chat_mention_menu);
     window.scbtChatSearchInputTextRef.removeEventListener('input', scbt_handler_for_chat_mention_menu);
+    return false;
   }, 2000);
-  return false;
 }
 
 
@@ -4070,7 +4074,7 @@ function scbt_handler_for_options_menu(e) {
 
 function scbt_handler_for_chat_mention_menu_keystrokes(e) {
   if (e.key == 'ArrowUp')  {
-    e.preventDefault();
+    if (e.preventDefault) { e.preventDefault(); }
     var selectedElem = document.activeElement;
     if (selectedElem) {
       var parentElm = selectedElem.parentElement;
@@ -4088,7 +4092,7 @@ function scbt_handler_for_chat_mention_menu_keystrokes(e) {
   }
 
   if (e.key == 'ArrowDown')  {
-    e.preventDefault();
+    if (e.preventDefault) { e.preventDefault(); }
     var selectedElem = document.activeElement;
     if (selectedElem) {
       var parentElm = selectedElem.parentElement;
@@ -4106,14 +4110,14 @@ function scbt_handler_for_chat_mention_menu_keystrokes(e) {
   }
 
   if (e.key == 'Escape')  {
-    e.preventDefault();
+    if (e.preventDefault) { e.preventDefault(); }
     window.document.removeEventListener('keydown', scbt_handler_for_chat_mention_menu_keystrokes);  
     scbt_user_chat_close_mention_menu('');
     return false;
   }
 
   if (e.key == 'Enter')  {
-    e.preventDefault();
+    if (e.preventDefault) { e.preventDefault(); }
     window.document.removeEventListener('keydown', scbt_handler_for_chat_mention_menu_keystrokes);
     var selectedElem = document.activeElement;
     var str = '';
@@ -4127,7 +4131,7 @@ function scbt_handler_for_chat_mention_menu_keystrokes(e) {
 
 
 function scbt_handler_for_chat_mention_menu_usernames(e) {
-  e.preventDefault();
+  if (e.preventDefault) { e.preventDefault(); }
   window.document.removeEventListener('keydown', scbt_handler_for_chat_mention_menu_keystrokes);
   scbt_user_chat_close_mention_menu(e.target.textContent);
   return false;
@@ -4135,10 +4139,6 @@ function scbt_handler_for_chat_mention_menu_usernames(e) {
 
 
 function scbt_handler_for_chat_mention_menu(e) {
-  console.log('doing scbt_handler_for_chat_mention_menu with e.data:');
-  console.log(e);
-  console.log(e.data);
-
   if (e.data == '@') {
     console.log('we have an @ so continuing on');
     scbt_get_usernames_for_mention_menu();
@@ -4162,7 +4162,7 @@ function scbt_handler_for_chat_mention_menu(e) {
 
 
 function scbt_handler_for_mention_menu_click(e) {
-  e.preventDefault();
+  if (e) { if (e.preventDefault) { e.preventDefault(); } }
   var t = '';
 
   if (e.target.classList.contains('chat-history--message') ) {
@@ -4204,9 +4204,7 @@ function scbt_handler_for_mention_menu_click(e) {
 
 
 function scbt_handler_sort_saved_streams_by_serviceid(e) {
-  if (e) {
-    e.preventDefault();
-  }
+  if (e) { if (e.preventDefault) { e.preventDefault(); } }
   window.scbtChatPreviousContentRef.innerHTML = '';
   window.scbtSavedStreamsArr.sort((a,b) => (a.serviceid.toLowerCase() > b.serviceid.toLowerCase()) ? 1 : ((b.serviceid.toLowerCase() > a.serviceid.toLowerCase()) ? -1 : 0));
   scbt_helper_build_list_of_saved_stream_chat_by_arr(window.scbtSavedStreamsArr);
@@ -4216,9 +4214,7 @@ function scbt_handler_sort_saved_streams_by_serviceid(e) {
 
 
 function scbt_handler_sort_saved_streams_by_channelid(e) {
-  if (e) {
-    e.preventDefault();
-  }
+  if (e) { if (e.preventDefault) { e.preventDefault(); } }
   window.scbtChatPreviousContentRef.innerHTML = '';
   window.scbtSavedStreamsArr.sort((a,b) => (a.channelid.toLowerCase() > b.channelid.toLowerCase()) ? 1 : ((b.channelid.toLowerCase() > a.channelid.toLowerCase()) ? -1 : 0));
   scbt_helper_build_list_of_saved_stream_chat_by_arr(window.scbtSavedStreamsArr);
@@ -4228,9 +4224,7 @@ function scbt_handler_sort_saved_streams_by_channelid(e) {
 
 
 function scbt_handler_sort_saved_streams_by_videoid(e) {
-  if (e) {
-    e.preventDefault();
-  }
+  if (e) { if (e.preventDefault) { e.preventDefault(); } }
   window.scbtChatPreviousContentRef.innerHTML = '';
   window.scbtSavedStreamsArr.sort((a,b) => (a.videoid.toLowerCase() > b.videoid.toLowerCase()) ? 1 : ((b.videoid.toLowerCase() > a.videoid.toLowerCase()) ? -1 : 0));
   scbt_helper_build_list_of_saved_stream_chat_by_arr(window.scbtSavedStreamsArr);
@@ -4240,9 +4234,7 @@ function scbt_handler_sort_saved_streams_by_videoid(e) {
 
 
 function scbt_handler_sort_saved_streams_by_current(e) {
-  if (e) {
-    e.preventDefault();
-  }
+  if (e) { if (e.preventDefault) { e.preventDefault(); } }
   window.scbtChatPreviousContentRef.innerHTML = '';
   window.scbtSavedStreamsArr.sort((a,b) => (a.videoid.toLowerCase() > b.videoid.toLowerCase()) ? 1 : ((b.videoid.toLowerCase() > a.videoid.toLowerCase()) ? -1 : 0));
 
@@ -4264,7 +4256,7 @@ function scbt_handler_sort_saved_streams_by_current(e) {
 
 function scbt_handler_click_username_insert_into_search(e) {
   if (e) {
-    e.preventDefault();
+    if (e) { if (e.preventDefault) { e.preventDefault(); } }
     if (e.target) {
       if (e.target.textContent) {
         var elemArr = document.body.getElementsByClassName('scbtChatSearchInputText');
@@ -4928,7 +4920,7 @@ function scbt_user_toggle_chat_menu() {
 
 function scbt_user_toggle_options_menu(e) {
   if (e) {
-    e.preventDefault();
+    if (e.preventDefault) { e.preventDefault(); }
     if (e.target) {
       if (e.target.id == 'scbt2') {
         if (e.target.classList.contains('focused') ) {
@@ -5350,45 +5342,30 @@ function scbt_helper_build_all_menus() {
 
 function scbt_helper_chat_auto_show() {
   if (window.scbtOptions.scbtfeature5 === true) {
-    // scbt_user_chat_full_screen_width();
-    // scbt_full_screen_video_height_chat();
-    var elemArr = document.body.querySelectorAll('header.header');
-    if (elemArr[0]) {
-      elemArr[0].style.display = 'none';
+    if (window.scbtMobileIs == false) {
+      var elemArr = document.querySelectorAll('aside.sidebar');
+      if (elemArr[0]) {
+        elemArr[0].style.position = 'absolute';
+      }
+      var elemArr = document.querySelectorAll('#chat-history-list');
+      if (elemArr[0]) {
+        // elemArr[0].style.position = 'absolute';
+        // elemArr[0].style.top = '1px';
+        // elemArr[0].style.marginTop = '0 auto';
+        elemArr[0].style.zIndex = '100000000';
+        elemArr[0].style.display = 'block';
+        elemArr[0].style.height = (window.screen.height - 100) + 'px';
+        elemArr[0].setAttribute('style', 'background-color:transparent !important');
+        // elemArr[0].style.opacity = '.66';
+        elemArr[0].style.textShadow = '1px 1px 4px #000';
+      }
+      var elemArr = document.querySelectorAll('.chat');
+      if (elemArr[0]) {
+        elemArr[0].style.background = 'transparent';
+      }
     }
-    elemArr = document.body.getElementsByClassName('chat--container');
-    if (elemArr[0]) {
-      elemArr[0].style.display = 'none';
-    }
-    scbt_user_theatre_mode();
-    window.scbtSearchChat = 'current';
-    window.scbtChatARef.textContent = 'Search this stream chat';
-    window.scbtChatMenuRef.classList.add('scbt-fl');
-    window.scbtChatWrapperRef.classList.add('scbt-bl');
-    window.scbtChatSearchInputTextRef.value = '';
-    window.scbtChatSearchInputTextRef.focus();
-    window.scbtSearchBarActiveIs = true;
-    elemArr = null; return false;
-  } else {
-    // scbt_user_chat_full_screen_width();
-    // scbt_full_screen_video_height_chat();
-    var elemArr = document.body.querySelectorAll('header.header');
-    if (elemArr[0]) {
-      elemArr[0].style.display = 'block';
-    }
-    var elemArr = document.body.getElementsByClassName('chat--container');
-    if (elemArr[0]) {
-      elemArr[0].style.display = 'block';
-    }
-    scbt_user_theatre_mode();
-    window.scbtSearchChat = '';
-    window.scbtChatARef.textContent = '';
-    window.scbtChatMenuRef.classList.remove('scbt-fl');
-    window.scbtChatWrapperRef.classList.remove('scbt-bl');
-    window.scbtChatSearchInputTextRef.value = '';
-    window.scbtSearchBarActiveIs = false;
-    elemArr = null; return false;
   }
+  return false;
 }
 
 
@@ -5510,6 +5487,8 @@ function scbt_helper_apply_css_from_option(obj) {
 
 
 function scbt_user_chat_down_to_bottom() {
+  if (!window.scbtDbNameToSearch) { scbt_helper_toast( ' No active stream or VOD chat '); return false; }
+
   if (window.scbtChatWrapperRef.classList.contains('scbt-bl') ) {
     window.scbtChatWrapperRef.scrollTop = window.scbtChatWrapperRef.scrollHeight - window.scbtChatWrapperRef.clientHeight;
     return false;
@@ -5524,6 +5503,8 @@ function scbt_user_chat_down_to_bottom() {
 
 
 function scbt_user_chat_font_size() {
+  if (!window.scbtDbNameToSearch) { scbt_helper_toast( ' No active stream or VOD chat '); return false; } 
+
   if (window.scbtChatWrapperRef.classList.contains('scbt-bl') ) {
     var elemArr = window.scbtChatWrapperRef.getElementsByTagName('p');
   } else {
@@ -5711,15 +5692,15 @@ function scbt_user_chat_text_only() {
           }
           var imgElemArr = elem.getElementsByTagName('img');
           [].forEach.call(imgElemArr, function(imgElm) {
-            imgElm.style.visibility = 'hidden';
+            imgElm.style.visibility = 'visible';
           });
           var iElemArr = elem.getElementsByTagName('i');
           [].forEach.call(iElemArr, function(iElem) {
-            iElem.style.display = 'none';
+            iElem.style.visibility = 'visible';
           });
           var svgElemArr = elem.getElementsByTagName('svg');
           [].forEach.call(svgElemArr, function(svgElem) {
-            svgElem.style.display = 'none';
+            svgElem.style.visibility = 'visible';
           });
         });
 
@@ -5731,6 +5712,8 @@ function scbt_user_chat_text_only() {
 
 
 function scbt_user_chat_up_to_top() {
+  if (!window.scbtDbNameToSearch) { scbt_helper_toast( ' No active stream or VOD chat '); return false; } 
+
   if (window.scbtChatWrapperRef.classList.contains('scbt-bl') ) {
     window.scbtChatWrapperRef.scrollTop = 0;
   } else {
@@ -5804,7 +5787,7 @@ function scbt_user_toggle_chats(e) {
     if (typeof e == 'string') {
       parameter = e;
     } else {
-      e.preventDefault();
+      if (e.preventDefault) { e.preventDefault(); }
       if (e.target) {
         if (e.target.id) {
           switch ( e.target.id ) {
@@ -6012,6 +5995,12 @@ function scbt_user_toggle_chats(e) {
             elem.style.opacity = 1;
           }
         }
+        if (parameter == 'donation') {
+          if (elem.classList.contains('chat-history--rant') ) {
+            scbt_helper_chat_on(elem);
+            elem.style.opacity = 1;
+          }   
+        }
 
       });
       window.scbtVisibilityChatShow = 2;
@@ -6092,6 +6081,11 @@ function scbt_user_toggle_chats(e) {
           if (elem.classList.contains('vip') ) {
             elem.style.opacity = 0;
           }
+        }
+        if (parameter == 'donation') {
+          if (elem.classList.contains('chat-history--rant') ) {
+            elem.style.opacity = 0;
+          }   
         }
 
         });
@@ -6311,6 +6305,7 @@ function scbt_user_toggle_verified_chats() {
 
 
 function scbt_helper_load_options(clicked) {
+
   var h = window.location.href;
   if (
     window.location.origin != 'https://rumble.com' || 
@@ -6375,13 +6370,22 @@ function scbt_helper_load_options(clicked) {
 
         window.scbt1ElementRef = document.body.getElementsByClassName('constrained')[0];
         window.scbt2ElementRef = document.body.querySelectorAll('header.header')[0];
-        window.scbt3ElementRef = document.body.querySelectorAll('section.chat')[0];
+
+        if ( window.location.href.indexOf('/chat/popup/') > -1) {
+          window.scbt1ElementRef = document.body.getElementsByClassName('constrained')[0];
+          window.scbt2ElementRef = document.body.querySelectorAll('section.chat')[0];
+        }
 
         if (window.scbt1ElementRef && window.scbt2ElementRef) {
           scbt_helper_build_all_menus();
         } else {
+          console.log('Error: stream/page not supported. Please refresh on a live stream.');
           scbt_helper_toast('Error: stream/page not supported. Please refresh on a live stream.');
         }
+
+
+
+
       } // if (elemArr[0])
       } // if window.hasOwnProperty('scbtIsRumble')
 
@@ -6428,6 +6432,35 @@ function scbt_helper_load_options(clicked) {
         } // this is a VOD
 
       } // this is a video page
+
+
+      // https://rumble.com/chat/popup/186798636
+      if ( window.location.href.indexOf('/chat/popup/') > -1) {
+        window.scbtchannelid = null;
+        window.scbtvideoid = null;
+        window.scbtDbNameToSearch = null;
+        window.scbtVODIs = false;
+
+        var elemArr = document.getElementsByClassName('chat--subscribe-header--title');
+        if (elemArr[0]) {
+          var t = elemArr[0].textContent;
+          if (t) {
+            t = t.trim();
+            t = t.replace(/ /g, '_');
+            t = t.replace(/\W/g, '');
+            window.scbtchannelid = t;
+          }
+        }
+        var arr = window.location.href.split('/chat/popup/');
+        if (arr[1]) {
+          window.scbtvideoid = arr[1];  
+        }
+        // scbt_get_str_dbname('startSaving');
+        window.scbtDbName = 'savedchat' + '&' + window.scbtserviceid + '&' + window.scbtchannelid + '&' + window.scbtvideoid;
+        window.scbtDbNameToSearch = window.scbtDbName;
+        scbt_set_db_for_saving(window.scbtDbName, 'startSaving');
+      }
+
 
   } // end scbt_helper_load_options
 
