@@ -1,7 +1,6 @@
 <!-- /* Copyright 2023 biolithic. All rights reserved. */ -->
 ## Rambler browser extension for computers and mobile devices 2.0.0
 
-
 ## Welcome!
 
 Thank you for downloading and trying this!  Written by a single person in the USA, we hope this helps you keep up with chat in small to large live streams. If you have any questions, comment, bugs or ideas on how to make this better, please visit https://beacons.ai/Ramblertv and send them there. Thanks!
