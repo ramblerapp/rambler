@@ -5652,25 +5652,31 @@ function scbt_helper_build_all_menus() {
 function scbt_helper_chat_auto_show() {
   if (window.scbtOptions.scbtfeature5 === true) {
     if (window.scbtMobileIs == false) {
-      var elemArr = document.querySelectorAll('aside.sidebar');
+      scbt_user_chat_full_screen_width();
+      scbt_full_screen_video_height_chat();
+
+      var elemArr = document.body.getElementsByClassName('media-page-chat-aside-chat-wrapper-fixed');
+      if (elemArr[0]) {
+        // position: absolute;
+        // top: 0px;
+        elemArr[0].style.position = 'absolute';
+        elemArr[0].style.top = '1px';
+        elemArr[0].style.height = '104vh';
+      }
+      var elemArr = document.body.getElementsByClassName('media-page-chat-aside-chat');
       if (elemArr[0]) {
         elemArr[0].style.position = 'absolute';
+        elemArr[0].style.top = '0px';
+        elemArr[0].style.left = '0px';
+        elemArr[0].style.right = 'initial';
       }
-      var elemArr = document.querySelectorAll('#chat-history-list');
+      var elemArr = document.body.getElementsByClassName('chat');
       if (elemArr[0]) {
-        // elemArr[0].style.position = 'absolute';
-        // elemArr[0].style.top = '1px';
-        // elemArr[0].style.marginTop = '0 auto';
-        elemArr[0].style.zIndex = '100000000';
-        elemArr[0].style.display = 'block';
-        elemArr[0].style.height = (window.screen.height - 100) + 'px';
-        elemArr[0].setAttribute('style', 'background-color:transparent !important');
-        // elemArr[0].style.opacity = '.66';
-        elemArr[0].style.textShadow = '1px 1px 4px #000';
+        elemArr[0].style.backgroundColor = 'transparent';
       }
-      var elemArr = document.querySelectorAll('.chat');
+      var elemArr = document.body.getElementsByClassName('chat-form-overflow-wrapper');
       if (elemArr[0]) {
-        elemArr[0].style.background = 'transparent';
+        elemArr[0].style.backgroundColor = '#000';
       }
     }
   }
@@ -5752,7 +5758,7 @@ function scbt_helper_apply_css_from_option(obj) {
     // Left handed screen. Flip screen so video is on the right and chat is on the left. 
     if (obj.a == 'scbtfeature7') {
       if (obj.b === true) {
-          css = css + '.main-and-sidebar { flex-direction: row-reverse; } .scbtChatWrapper { display: flex; flex-direction: row-reverse; } ';
+          css = css + '.main-and-sidebar { flex-direction: row-reverse; } .media-page-chat-aside-chat-wrapper-fixed { position: initial; } .scbtChatWrapper { display: flex; flex-direction: row-reverse; } ';
       } else {
           if (window.scbtMobileIs === true) { 
             css = css + '.main-and-sidebar { flex-direction: column; } .scbtChatWrapper { display: block; } ';
@@ -5850,17 +5856,16 @@ function scbt_user_chat_font_size() {
 
 
 function scbt_user_chat_full_screen_width() {
+  console.log('doing scbt_user_chat_full_screen_width');
   if (window.scbtFullScreenWidthIs === false) {
+    console.log('false')
     var elemArr = document.body.getElementsByClassName('nonconstrained');
     if (elemArr[0]) {
-      elemArr[0].style.paddingRight = '0.1rem';
-      elemArr[0].style.paddingLeft = '0.1rem';
-      elemArr[0].style.maxWidth = 'none';
+      elemArr[0].style.marginLeft = '0px';
     }
-    elemArr = document.body.getElementsByClassName('sidebar');
+    elemArr = document.body.getElementsByClassName('navs');
     if (elemArr[0]) {
-      elemArr[0].style.marginLeft = '-1rem';
-      elemArr[0].style.width = '350px';
+      elemArr[0].style.display = 'none';
     }
     window.scbtFullScreenWidthIs = true;
     elemArr = null; return false;
@@ -5868,15 +5873,13 @@ function scbt_user_chat_full_screen_width() {
 
   if (window.scbtFullScreenWidthIs === true) {
     var elemArr = document.body.getElementsByClassName('nonconstrained');
+    console.log('true')
     if (elemArr[0]) {
-      elemArr[0].style.paddingRight = '2rem';
-      elemArr[0].style.paddingLeft = '2rem';
-      elemArr[0].style.maxWidth = '1700px';
+      elemArr[0].style.marginLeft = '80px';
     }
-    elemArr = document.body.getElementsByClassName('sidebar');
+    elemArr = document.body.getElementsByClassName('navs');
     if (elemArr[0]) {
-      elemArr[0].style.marginLeft = '0';
-      elemArr[0].style.width = '350px';
+      elemArr[0].style.display = 'block';
     }
     window.scbtFullScreenWidthIs = false;
     elemArr = null; return false;
@@ -6042,7 +6045,7 @@ function scbt_user_chat_up_to_top() {
 
 function scbt_full_screen_video_height_chat() {
   if (window.scbtFullScreenHeightIs === false) {
-    var elemArr = document.body.getElementsByClassName('sidebar');
+    var elemArr = document.body.getElementsByClassName('media-page-chat-aside-chat');
     if (elemArr[0]) {
       elemArr[0].style.position = 'absolute';
       elemArr[0].style.top = '0px';
@@ -6051,9 +6054,9 @@ function scbt_full_screen_video_height_chat() {
       elemArr[0].style.height = '99vh';
       elemArr[0].style.marginTop = '-3rem';
     }
-    elemArr = document.body.getElementsByClassName('chat--height');
+    elemArr = document.body.getElementsByClassName('media-page-chat-aside-chat-wrapper-fixed');
     if (elemArr[0]) {
-      elemArr[0].style.height = '90vh';
+      elemArr[0].style.top = '0px';
     }
     window.scbtFullScreenHeightIs = true;
     scbt_user_chat_down_to_bottom();
@@ -6061,7 +6064,7 @@ function scbt_full_screen_video_height_chat() {
   }
 
   if (window.scbtFullScreenHeightIs === true) {
-    var elemArr = document.body.getElementsByClassName('sidebar');
+    var elemArr = document.body.getElementsByClassName('media-page-chat-aside-chat');
     if (elemArr[0]) {
       elemArr[0].style.position = 'relative';
       elemArr[0].style.right = 'initial';
@@ -6070,9 +6073,9 @@ function scbt_full_screen_video_height_chat() {
       elemArr[0].style.height = 'initial';
       elemArr[0].style.marginTop = 'initial';
     }
-    elemArr = document.body.getElementsByClassName('chat--height');
+    elemArr = document.body.getElementsByClassName('media-page-chat-aside-chat-wrapper-fixed');
     if (elemArr[0]) {
-      elemArr[0].style.height = '90vh';
+      elemArr[0].style.top = '70px';
     }
 
     window.scbtFullScreenHeightIs = false;
@@ -6084,10 +6087,11 @@ function scbt_full_screen_video_height_chat() {
 
 // view stream in theatre mode
 function scbt_user_theatre_mode() {
- var elemArr = document.body.querySelectorAll('[title="Toggle theater mode"]')
+ var elemArr = document.body.getElementsByClassName('media-page-chat-container-toggle-btn');
  if (elemArr[0]) {
-    elemArr[0].click();
-  }
+     elemArr[0].click();
+ }
+  scbt_user_chat_full_screen_width();
   elemArr = null; return false;
 }
 
